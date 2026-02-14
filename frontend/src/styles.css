@@ -1,0 +1,20 @@
+:root {
+  --bg: #f4f6f8;
+  --panel: #ffffff;
+  --text: #1d2a35;
+  --muted: #5b6b77;
+  --primary: #006699;
+  --primary-soft: #e5f5fc;
+  --border: #dbe4ea;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: radial-gradient(circle at top right, #eaf6ff 0%, var(--bg) 45%);
+  color: var(--text);
+}

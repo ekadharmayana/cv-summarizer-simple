@@ -1,0 +1,16 @@
+server:
+  port: 8080
+  error:
+    include-message: always
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+cvsum:
+  python:
+    executable: python
+    script-path: python/gpu_infer.py
+    timeout-seconds: 600

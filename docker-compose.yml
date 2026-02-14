@@ -1,0 +1,29 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      CVSUM_PYTHON_EXECUTABLE: python3
+      CVSUM_PYTHON_SCRIPT_PATH: python/gpu_infer.py
+      CVSUM_PYTHON_TIMEOUT_SECONDS: 600
+      HF_HOME: /models/hf-cache
+      HF_HUB_CACHE: /models/hf-cache/hub
+      TRANSFORMERS_CACHE: /models/hf-cache/transformers
+      HF_MODEL_ID: TinyLlama/TinyLlama-1.1B-Chat-v1.0
+      HF_MAX_INPUT_TOKENS: 2048
+      HF_MAX_NEW_TOKENS: 180
+    volumes:
+      - ./models/hf-cache:/models/hf-cache
+      - ./models/local:/models/local
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend

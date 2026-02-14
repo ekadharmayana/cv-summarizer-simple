@@ -1,0 +1,53 @@
+<main class="page">
+  <section class="panel">
+    <h1>Local CV Summarizer</h1>
+    <p class="subtitle">Upload a CV PDF, ask HR questions, and switch between mock and real mode.</p>
+
+    <label class="field">
+      <span>CV PDF</span>
+      <input type="file" accept="application/pdf" (change)="onFileSelected($event)" />
+    </label>
+
+    <label class="field">
+      <span>Questions (one per line)</span>
+      <textarea
+        [(ngModel)]="questionText"
+        rows="6"
+        placeholder="What is the candidate's strongest technical skill?
+How many years of relevant experience do they show?"></textarea>
+    </label>
+
+    <label class="toggle">
+      <input type="checkbox" [(ngModel)]="useMock" />
+      <span>Use mock mode (turn off later for real GPU answers)</span>
+    </label>
+
+    <button (click)="submit()" [disabled]="isLoading">Process CV</button>
+
+    <div class="state" *ngIf="isLoading">
+      <p>{{ progressMessage || 'Processing...' }}</p>
+      <p *ngIf="currentJobId"><strong>Job ID:</strong> {{ currentJobId }}</p>
+      <progress [value]="progress" max="100"></progress>
+      <p>{{ progress }}%</p>
+    </div>
+    <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+  </section>
+
+  <section class="panel result" *ngIf="result">
+    <h2>Response</h2>
+    <p><strong>Mode:</strong> {{ result.mockMode ? 'Mock' : 'Real/GPU' }}</p>
+    <p><strong>Model:</strong> {{ result.modelInfo }}</p>
+    <p><strong>Summary:</strong> {{ result.summary }}</p>
+
+    <h3>Answers</h3>
+    <div class="answer" *ngFor="let item of result.answers">
+      <p><strong>Q:</strong> {{ item.question }}</p>
+      <p><strong>A:</strong> {{ item.answer }}</p>
+      <p><strong>Confidence:</strong> {{ item.confidence * 100 | number: '1.0-1' }}%</p>
+      <div class="citations">
+        <p><strong>Citations from CV:</strong></p>
+        <blockquote *ngFor="let citation of item.citations">{{ citation }}</blockquote>
+      </div>
+    </div>
+  </section>
+</main>
