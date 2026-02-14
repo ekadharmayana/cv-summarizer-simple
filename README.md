@@ -1,10 +1,21 @@
-# CV Summarizer (Local, GPU-Ready)
+# CV Summarizer (Local, GPU-Ready, Full-Stack AI)
+![Java](https://img.shields.io/badge/Java-21-orange)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.4-green)
+![Docker](https://img.shields.io/badge/Docker-Enabled-2496ED)
+![Python](https://img.shields.io/badge/Python-3-blue?logo=python&logoColor=white)
+![Angular](https://img.shields.io/badge/Angular-17-red?logo=angular&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-20-green?style=flat-square&logo=node.js&logoColor=white)
 
-This project is a starter full-stack app for HR CV screening:
 
-- Frontend (Angular): upload CV PDF + ask questions + toggle `mock` / `real`.
-- Backend (Java Spring Boot): receives multipart request, extracts PDF text, runs async jobs, and streams progress with SSE.
-- Python runtime: executes local Hugging Face inference (GPU if available).
+## Overview
+**CV Summarizer** is a full-stack HR screening application that atomatically:
+- extract text from uploaded CV PDFs
+- generates a professional candidate summary
+- answers recruiter questions about the CV
+- runs locally with Hugging Face models
+- supports GPU acceleration
+- streams real-time processing progress
+
 
 ## Current flow
 
